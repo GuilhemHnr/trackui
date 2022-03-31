@@ -12,6 +12,7 @@ ZeroMQ msg reception from rustracker
 Add plane capacity
 Scrolling of the plane list and display the current informations
 Dynamic icone size
+Icon orientation depending on the track angle
 Style embellishment
 
 
