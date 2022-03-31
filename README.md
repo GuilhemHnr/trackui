@@ -2,6 +2,11 @@
 Web interface for the rustracker project :
 https://github.com/Witaek/RusTracker
 
+#### **to do :**
+to make it run :
+`trunk serve`
+and then go to http://localhost:8080/
+
 #### **to do :** 
 ZeroMQ msg reception from rustracker
 Add plane capacity
