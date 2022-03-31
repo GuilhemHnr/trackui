@@ -2,7 +2,7 @@
 Web interface for the rustracker project :
 https://github.com/Witaek/RusTracker
 
-#### **to do :**
+#### **run :**
 to make it run :
 `trunk serve`
 and then go to http://localhost:8080/
