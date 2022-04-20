@@ -1,7 +1,19 @@
 async function getJSON() {
-    const response = await fetch('http://localhost:8000/ressources/planes3.geojson');
+    const response = await fetch('http://localhost:3000/planes3.geojson');
+
     var json = await response.json();
     return json
+}
+
+async function get_data(){
+    let obj = await getJSON();
+
+    
+    
+    //handle geoJSON ------------------------------------------------------
+    L.geoJSON(obj, {
+        style: myStyle
+    }).addTo(map);
 }
 
 var plane_local2 = {"geometry": {"coordinates":[[1.9858492612838745,48.80726623535156], [1.9,48.0]],"type":"LineString"},
@@ -29,14 +41,10 @@ var map = L.map('map',{center: [48.633333, 2.450000],zoom: 8},);
         "opacity": 0.65
     };
 
-    let obj = getJSON();
+    get_data();
 
-    
-    
-    //handle geoJSON ------------------------------------------------------
-    L.geoJSON(obj, {
-        style: myStyle
-    }).addTo(map);
+
+
     
     
 
