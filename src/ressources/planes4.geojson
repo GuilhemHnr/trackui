@@ -1,4 +1,4 @@
-{"geometry": {"coordinates":[[1.9858492612838745,48.80726623535156], [1.9,48.0], [2.0,49.0], [5.0,50.0]],"type":"LineString"},
+{"geometry": {"coordinates":[[1.5,48.0], [1.9,49.0], [2.0,50.0], [3.0,51.0]],"type":"LineString"},
         "id":"471f46",
         "properties":
             {"":"callsign","37200":"altitude","479.4351 kt | Barometric : 0 ft/min | GS":"speed"},

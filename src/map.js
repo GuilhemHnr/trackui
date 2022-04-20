@@ -1,26 +1,23 @@
+
 async function getJSON() {
-    const response = await fetch('http://localhost:3000/planes3.geojson');
+    const response = await fetch('http://localhost:3000/planes4.geojson');
 
     var json = await response.json();
+    console.log("new data");
     return json
 }
 
-async function get_data(){
+async function get_data(livelayergroup){
     let obj = await getJSON();
-
-    
-    
+    livelayergroup.clearLayers();
     //handle geoJSON ------------------------------------------------------
-    L.geoJSON(obj, {
+    let live_layer = L.geoJSON(obj, {
         style: myStyle
-    }).addTo(map);
+    });
+    livelayergroup.addLayer(live_layer);
+    localtion.reload();
+    delete(obj);
 }
-
-var plane_local2 = {"geometry": {"coordinates":[[1.9858492612838745,48.80726623535156], [1.9,48.0]],"type":"LineString"},
-"id":"471f46",
-"properties":
-    {"":"callsign","37200":"altitude","479.4351 kt | Barometric : 0 ft/min | GS":"speed"},
-"type":"Feature"};
 
 var map = L.map('map',{center: [48.633333, 2.450000],zoom: 8},);
 
@@ -29,20 +26,25 @@ var map = L.map('map',{center: [48.633333, 2.450000],zoom: 8},);
 
     //define style here ------------------------------------------------------
     var planeIcon = L.icon({
-        iconUrl: 'ressources/plane.png',
+        iconUrl: 'ressources/plane3.png',
     
         iconSize:     [50, 50], // size of the icon
         iconAnchor:   [25, 25], // point of the icon which will correspond to marker's location
     });
 
     var myStyle = {
-        "color": "#ff7800",
-        "weight": 5,
-        "opacity": 0.65
+        stroke: true,
+        color: "#ff7800",
+        weight: 5,
+        opacity: 0.65
     };
 
-    get_data();
+    var layerGroup = new L.LayerGroup();
+    layerGroup.addTo(map);
 
+    setInterval(() => {
+        get_data(layerGroup);
+    }, 1000);
 
 
     
