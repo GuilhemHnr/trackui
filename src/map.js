@@ -1,52 +1,51 @@
-async function getJSON() {
-    const response = await fetch('http://localhost:3000/planes3.geojson');
-
-    var json = await response.json();
-    return json
-}
-
-async function get_data(){
-    let obj = await getJSON();
-
-    
-    
-    //handle geoJSON ------------------------------------------------------
-    L.geoJSON(obj, {
-        style: myStyle
-    }).addTo(map);
-}
-
-var plane_local2 = {"geometry": {"coordinates":[[1.9858492612838745,48.80726623535156], [1.9,48.0]],"type":"LineString"},
-"id":"471f46",
-"properties":
-    {"":"callsign","37200":"altitude","479.4351 kt | Barometric : 0 ft/min | GS":"speed"},
-"type":"Feature"};
 
 var map = L.map('map',{center: [48.633333, 2.450000],zoom: 8},);
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png').addTo(map);
 
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(map);
+//autre fond possible  : http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png
 
+var plane;
 
-    //define style here ------------------------------------------------------
-    var planeIcon = L.icon({
-        iconUrl: 'ressources/plane.png',
+var myStyle = {
+    stroke: true,
+    color: "#14dbff",
+    weight: 2,
+    opacity: 0.5
+};
+var planeIcon = L.icon({
+        iconUrl: './ressources/plane.png',
     
-        iconSize:     [50, 50], // size of the icon
-        iconAnchor:   [25, 25], // point of the icon which will correspond to marker's location
+        iconSize:     [30, 30], // size of the icon
+        iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
+});
+
+function onEachFeature(feature, layer) {
+    // This is where it loop through your features
+    var numPts = feature.geometry.coordinates.length;
+    layer.setStyle(myStyle);
+    if (numPts >= 1) {
+        var end = feature.geometry.coordinates[numPts-1];
+        let mark = L.marker([end[1],end[0]]);
+        mark.bindPopup('<h1>'+feature.id+'</h1>');
+        mark.setIcon(planeIcon);
+        mark.addTo(layerGroup);
+    }
+};
+
+var layerGroup = new L.LayerGroup();
+layerGroup.addTo(map);
+
+function update_position() {
+    var curTimeStamp = Math.floor(Date.now() / 1000);
+    $.getJSON("http://127.0.0.1:3000/planes.geojson?t="+curTimeStamp, function(data) {
+        console.log(data);
+        
+        layerGroup.clearLayers();
+        plane = L.geoJSON(data, {onEachFeature: onEachFeature} );
+        layerGroup.addLayer(plane);
+
+        setTimeout(update_position, 1000);
     });
+}
 
-    var myStyle = {
-        "color": "#ff7800",
-        "weight": 5,
-        "opacity": 0.65
-    };
-
-    get_data();
-
-
-
-    
-    
-
-
-    
+update_position();

@@ -15,9 +15,6 @@ run
 
 localhost:3000
 
-#### **to do :** 
-
-
 
 #### **Contributeurs :**  
 HONORÉ Guilhem  
