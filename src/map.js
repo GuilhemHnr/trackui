@@ -1,6 +1,6 @@
 
 async function getJSON() {
-    const response = await fetch('http://localhost:3000/planes4.geojson');
+    var response = await fetch('http://localhost:3000/planes4.geojson');
 
     var json = await response.json();
     console.log("new data");
@@ -15,8 +15,8 @@ async function get_data(livelayergroup){
         style: myStyle
     });
     livelayergroup.addLayer(live_layer);
-    localtion.reload();
-    delete(obj);
+    //localtion.reload();
+    //delete(obj);
 }
 
 var map = L.map('map',{center: [48.633333, 2.450000],zoom: 8},);

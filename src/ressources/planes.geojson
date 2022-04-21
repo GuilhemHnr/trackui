@@ -1,5 +1,5 @@
 {"features":
-    [{"geometry":{"coordinates":[],"type":"LineString"},
+    [{"geometry":{"coordinates":[[1.22,13.0],[2.0,15.0],[3.0,18.0],[4.0,20.0]],"type":"LineString"},
         "id":"484aa1",
         "properties":{"":"callsign","38000":"altitude","449.64987 kt | Barometric : 0 ft/min | GS":"speed"},
         "type":"Feature"},
