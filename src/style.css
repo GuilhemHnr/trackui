@@ -1,4 +1,12 @@
 #map {
-    width: 1600px;
-    height: 800px;
+    width: 700px;
+    height: 600px;
+    margin-top: 50px;
     }
+body{background-color : rgb(144, 108, 222)}
+p{
+    width: 300px;
+}
+.absolute{position:absolute;}
+.haut{ top : 100px;}
+.gauche{right : 1100px;}
