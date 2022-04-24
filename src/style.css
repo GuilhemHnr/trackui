@@ -1,5 +1,5 @@
 #rectangle {
-    width  : 1600px;
+    width  : 103%;
     height : 150px;
     position:absolute;
     top:0px;
@@ -11,12 +11,12 @@
   }
 #map {
     width: 700px;
-    height: 600px;
+    height: 400px;
     top:250px;
     border-width : 15px;
     border-style:solid;
     position:absolute;
-    border-radius:10px;
+    border-radius:30px;
     border-color:rgb(255, 255, 255);
     z-index:1;
     }
@@ -30,10 +30,54 @@ body{ background-color: gray;
     margin-top :50px;}
 .titre{
     color:white;
+    position : center;
+    position : absolute;
 }
 .para{
 position:absolute;
-top: 100px;
+border-width : 6px;
+border-style:solid;
+border-color:white;
+border-radius:30px;
+top: 250px;
 left:800px;
 }
+table{
+    border: 1px solid black;
+    border-collapse : separate;
+    border-spacing : 0px;
+    min-width : max-content;
+    font-size:25px;
+    height : 
 
+}
+
+th{
+    position : sticky;
+    top : 0px;
+    background-color : rgb(83, 86, 86);
+    color : wheat;
+}
+.table-wrapper{
+    max-height : 385px;
+    overflow-y : scroll;
+    margin : 20px;
+}
+
+th, td {
+    border : 1px solid black;
+    padding : 10px;
+}
+.outer-wrapper{
+    position:absolute;
+    left : 50%;
+    width : 50%;
+    top: 250px;
+    border: 1px solid black;
+    box-shadow : 0px 0px 3px black;
+    border-radius : 30px;
+    max-width:fit-content;
+}
+button{
+    position : center;
+}
