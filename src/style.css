@@ -2,7 +2,7 @@
     width  : 1600px;
     height : 150px;
     position:absolute;
-    margin-top: -620px;
+    top:0px;
     margin-left : -50px;
     position: fixed;
     z-index: 2;
@@ -12,9 +12,10 @@
 #map {
     width: 700px;
     height: 600px;
-    margin-top: -400px;
+    top:250px;
     border-width : 15px;
     border-style:solid;
+    position:absolute;
     border-radius:10px;
     border-color:rgb(255, 255, 255);
     z-index:1;
@@ -25,12 +26,14 @@ body{ background-color: gray;
         background-size:100%;
 }
 .rec{color:white;
+    top:250px;
     margin-top :50px;}
 .titre{
     color:white;
 }
 .para{
-    margin-left: 1000px;
-    margin-top : 500px;
-    border-width :2px;
+position:absolute;
+top: 100px;
+left:800px;
 }
+
