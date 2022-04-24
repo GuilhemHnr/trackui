@@ -43,15 +43,14 @@ layerGroup.addTo(map);
 
 function update_position() {
     var curTimeStamp = Math.floor(Date.now() / 1000);
-    $.getJSON("http://127.0.0.1:3000/planes.geojson?t="+curTimeStamp, function(data) {
+    $.getJSON("http://157.159.195.63/planes.geojson?t="+curTimeStamp, function(data) {
         console.log(data);
         
         layerGroup.clearLayers();
         plane = L.geoJSON(data, {onEachFeature: onEachFeature} );
         layerGroup.addLayer(plane);
 
-        setTimeout(update_position, 1000);
     });
 }
 
-update_position();
+setInterval(update_position, 1000);
