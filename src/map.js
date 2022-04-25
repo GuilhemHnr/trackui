@@ -1,4 +1,3 @@
-
 var map = L.map('map',{center: [48.633333, 2.450000],zoom: 8},);
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png').addTo(map);
 
@@ -25,13 +24,10 @@ function onEachFeature(feature, layer) {
     layer.setStyle(myStyle);
     if (numPts >= 1) {
         var end = feature.geometry.coordinates[numPts-1];
-        let mark = L.rotatedMarker(
-            [end[1],end[0]],
-            {
-                rotationAngle: parseInt(feature.properties.track),
-                rotationOrigin: "center",
-              }
-            );
+
+        let mark = new L.Marker([end[1],end[0]], {iconAngle: feature.properties.track});
+
+        console.log(feature.properties.track);
         mark.bindPopup('<h1>'+feature.id+'</h1>');
         mark.setIcon(planeIcon);
         mark.addTo(layerGroup);
@@ -43,7 +39,9 @@ layerGroup.addTo(map);
 
 function update_position() {
     var curTimeStamp = Math.floor(Date.now() / 1000);
-    $.getJSON("http://157.159.195.63/planes.geojson?t="+curTimeStamp, function(data) {
+    //http://157.159.195.63/planes.geojson?t=
+    //http://127.0.0.1:3000/planes.geojson?t=
+    $.getJSON("http://127.0.0.1:3000/planes.geojson?t="+curTimeStamp, function(data) {
         console.log(data);
         
         layerGroup.clearLayers();
