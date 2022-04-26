@@ -1,6 +1,6 @@
 #rectangle {
     width  : 103%;
-    height : 150px;
+    height : 100px;
     position:absolute;
     top:0px;
     margin-left : -50px;
@@ -10,9 +10,9 @@
     background :rgb(86, 87, 89);
   }
 #map {
-    width: 700px;
-    height: 400px;
-    top:250px;
+    width: 900px;
+    height: 600px;
+    top:120px;
     border-width : 15px;
     border-style:solid;
     position:absolute;
@@ -29,9 +29,10 @@ body{ background-color: gray;
     top:250px;
     margin-top :50px;}
 .titre{
+    top : -100px;
     color:white;
-    position : center;
-    position : absolute;
+
+
 }
 .para{
 position:absolute;
@@ -47,8 +48,8 @@ table{
     border-collapse : separate;
     border-spacing : 0px;
     min-width : max-content;
-    font-size:25px;
-    height : 
+    font-size:15px;
+
 
 }
 
@@ -70,9 +71,9 @@ th, td {
 }
 .outer-wrapper{
     position:absolute;
-    left : 50%;
-    width : 50%;
-    top: 250px;
+    left : 65%;
+    width : 40%;
+    top: 120px;
     border: 1px solid black;
     box-shadow : 0px 0px 3px black;
     border-radius : 30px;
