@@ -25,7 +25,13 @@ function onEachFeature(feature, layer) {
     layer.setStyle(myStyle);
     if (numPts >= 1) {
         var end = feature.geometry.coordinates[numPts-1];
-        let mark = L.marker([end[1],end[0]]);
+        let mark = L.rotatedMarker(
+            [end[1],end[0]],
+            {
+                rotationAngle: parseInt(feature.properties.track),
+                rotationOrigin: "center",
+              }
+            );
         mark.bindPopup('<h1>'+feature.id+'</h1>');
         mark.setIcon(planeIcon);
         mark.addTo(layerGroup);
