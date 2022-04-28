@@ -7,7 +7,7 @@
     position: fixed;
     z-index: 2;
 
-    background :rgb(86, 87, 89);
+    background :rgb(179, 237, 255);
   }
 #map {
     width: 900px;
@@ -20,7 +20,7 @@
     border-color:rgb(255, 255, 255);
     z-index:1;
     }
-body{ background-color: gray;
+body{ background-color: rgb(5, 5, 58);
         background-repeat:no-repeat;
         background-attachment: fixed;
         background-size:100%;
@@ -63,6 +63,8 @@ th{
     max-height : 385px;
     overflow-y : scroll;
     margin : 20px;
+    color : rgb(255, 255, 255);
+    background-color : rgb(43, 43, 43);
 }
 
 th, td {
@@ -78,7 +80,9 @@ th, td {
     box-shadow : 0px 0px 3px black;
     border-radius : 30px;
     max-width:fit-content;
+    background-color : rgb(255, 255, 255);
 }
+
 button{
     position : center;
 }
