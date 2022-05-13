@@ -5,35 +5,41 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
 
 var plane;
 var plane_table = document.getElementById("plane_table");
+var id_selected;
 
-var myStyle = {
+var StyleDefault = {
     stroke: true,
     color: "#14dbff",
     weight: 2,
     opacity: 0.5
 };
 
-var planeIcon = L.icon({
+var StyleSelected = {
+    stroke: true,
+    color: "#7CFC00",
+    weight: 4,
+    opacity: 1
+};
+
+var PlaneIcon = L.icon({
         iconUrl: './ressources/plane.png',
     
         iconSize:     [30, 30], // size of the icon
         iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
 });
 
+var IconSelected = L.icon({
+    iconUrl: './ressources/plane_selected.png',
+
+    iconSize:     [40, 40], // size of the icon
+    iconAnchor:   [20, 20], // point of the icon which will correspond to marker's location
+});
+
 function onEachFeature(feature, layer) {
     // This is where it loop through your features
 
     var numPts = feature.geometry.coordinates.length;
-    layer.setStyle(myStyle);
-    if (numPts >= 1) {
-        var end = feature.geometry.coordinates[numPts-1];
-
-        let mark = new L.Marker([end[1],end[0]], {iconAngle: feature.properties.track});
-
-        mark.bindPopup('<h1>'+feature.id+'</h1>');
-        mark.setIcon(planeIcon);
-        mark.addTo(layerGroup);
-    }
+    layer.setStyle(StyleDefault);
 
     // table
     var row = plane_table.insertRow();
@@ -44,18 +50,41 @@ function onEachFeature(feature, layer) {
     var cell_speed = row.insertCell();
     var cell_vt_spd = row.insertCell();
 
-    // --- fill cells
+
     if (numPts >= 1) {
+        var end = feature.geometry.coordinates[numPts-1];
+
+        let mark = new L.Marker([end[1],end[0]], {iconAngle: feature.properties.track});
+
+        mark.bindPopup('<h1>'+feature.id+'</h1>');
+
+        if (feature.id == id_selected) {
+            mark.setIcon(IconSelected);
+            layer.setStyle(StyleSelected);
+        } else {
+            mark.setIcon(PlaneIcon);
+        };
+        
+        mark.addTo(layerGroup);
+
+        //button creation
         cell_id.innerHTML = '<input id='+feature.id+'_button type="button" value='+feature.id+' onclick = />';
         var button = document.getElementById(feature.id+'_button');
-        button.onclick = function () {map.flyTo([end[1],end[0]], 8)};
-    } else {cell_id.innerHTML = feature.id;}
+        // --- action on click
+        button.onclick = function () {
+            map.flyTo([end[1],end[0]], 8);
+            id_selected = feature.id;
+        };
 
+    }else {cell_id.innerHTML = feature.id;};
+
+    
+
+    // --- filling cells
     cell_callsign.innerHTML = feature.properties.callsign;
     cell_altitude.innerHTML = feature.properties.altitude+' ft';
-    cell_speed.innerHTML = Math.trunc(feature.properties.speed)+' kt';
-    cell_vt_spd.innerHTML = feature.properties.sd_vt;
-
+    cell_speed.innerHTML    = Math.trunc(feature.properties.speed)+' kt';
+    cell_vt_spd.innerHTML   = feature.properties.sd_vt;
 };
 
 var layerGroup = new L.LayerGroup();
@@ -69,8 +98,8 @@ function update_position() {
         console.log(data);
         
         plane_table.innerHTML="";
-        plane = L.geoJSON(data, {onEachFeature: onEachFeature} );
         layerGroup.clearLayers();
+        plane = L.geoJSON(data, {onEachFeature: onEachFeature} );
         layerGroup.addLayer(plane);
 
     });
