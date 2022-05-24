@@ -23,6 +23,42 @@ var StyleSelected = {
     opacity: 1
 };
 
+//antenna placement
+var AntennaIcon = L.icon({
+    iconUrl: './ressources/antenne.png',
+
+    iconSize:     [20, 20], // size of the icon
+    iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+});
+
+function onEachFeature_Antenna(feature, layer) {
+    // This is where it loop through your features
+    let mark = new L.Marker(feature.geometry.point);
+    mark.setIcon(AntennaIcon);
+    mark.addTo(layer);
+};
+
+$.getJSON('./antenne.geojson', function(data) {
+
+    layerAntenna = L.geoJSON(data, {onEachFeature: onEachFeature_Antenna} );
+    layerAntenna.addTo(map);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Icon for plane
 var PlaneIcon = L.icon({
         iconUrl: './ressources/plane.png',
     
@@ -36,6 +72,10 @@ var IconSelected = L.icon({
     iconSize:     [40, 40], // size of the icon
     iconAnchor:   [20, 20], // point of the icon which will correspond to marker's location
 });
+
+
+
+//geojson treatment
 
 function onEachFeature(feature, layer) {
     // This is where it loop through your features
