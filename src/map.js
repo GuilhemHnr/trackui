@@ -41,7 +41,7 @@ function update_position() {
     var curTimeStamp = Math.floor(Date.now() / 1000);
     //http://157.159.195.63/planes.geojson?t=
     //http://127.0.0.1:3000/planes.geojson?t=
-    $.getJSON("http://127.0.0.1:3000/planes.geojson?t="+curTimeStamp, function(data) {
+    $.getJSON("http://157.159.195.63/planes.geojson?t="+curTimeStamp, function(data) {
         console.log(data);
         
         layerGroup.clearLayers();
