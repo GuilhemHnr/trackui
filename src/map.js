@@ -38,7 +38,7 @@ function onEachFeature_Antenna(feature, layer) {
     mark.addTo(layer);
 };
 
-$.getJSON('./antenne.geojson', function(data) {
+$.getJSON('./ressources/antenne.geojson', function(data) {
 
     layerAntenna = L.geoJSON(data, {onEachFeature: onEachFeature_Antenna} );
     layerAntenna.addTo(map);
