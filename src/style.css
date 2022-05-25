@@ -94,3 +94,11 @@ th, td {
 button{
     position : center;
 }
+
+#contributions{
+
+    color: white;
+    position: fixed;
+    right: 200px; 
+    bottom: 50px;
+}
